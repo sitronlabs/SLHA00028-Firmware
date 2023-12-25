@@ -193,7 +193,7 @@ void loop(void) {
 
                 /* Sleep until we get interrupted by either a pulse signal or a timeout */
                 uint8_t interrupt = digitalPinToInterrupt(CONFIG_GAZPAR_PULSE_PIN);
-                res = sleep(interrupt, FALLING, 600000, true);
+                res = sleep(interrupt, FALLING, 3600000, true);
 
                 /* If we have been interrupted by a pulse signal,
                  * increment the value and send the new one */
