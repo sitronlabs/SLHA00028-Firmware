@@ -10,7 +10,8 @@
 #include <stdlib.h>
 
 /* */
-static double volatile m_value;                 //!< In cubic meters
+static double volatile m_value_initial;         //!< In cubic meters
+static uint32_t m_value_pulses;                 //!< Number of pulses
 static bool volatile m_value_initial_received;  //!<
 
 /* List of virtual sensors */
@@ -86,7 +87,8 @@ void receive(const MyMessage &message) {
 
     /* Handle user manual input initial value */
     if (message.sensor == SENSOR_0_MANAL && message.getType() == V_TEXT) {
-        m_value = strtod(message.getString(), NULL);
+        m_value_initial = strtod(message.getString(), NULL);
+        m_value_pulses = 0;
         m_value_initial_received = true;
         MyMessage message(SENSOR_0_MANAL, V_TEXT);
         send(message.set(""));
@@ -94,7 +96,8 @@ void receive(const MyMessage &message) {
 
     /* Handle value sent by controller */
     else if (message.sensor == SENSOR_1_GAS && message.getType() == V_VOLUME) {
-        m_value = message.getFloat();
+        m_value_initial = message.getFloat();
+        m_value_pulses = 0;
         m_value_initial_received = true;
     }
 }
@@ -198,7 +201,7 @@ void loop(void) {
                 /* If we have been interrupted by a pulse signal,
                  * increment the value and send the new one */
                 if (res == interrupt) {
-                    m_value += 0.010;
+                    m_value_pulses++;
                     m_sm = STATE_5;
                 }
 
@@ -214,11 +217,12 @@ void loop(void) {
 
                 /* Send the value,
                  * but if it doesn't work don't bother retrying */
-                static uint32_t value_last = 0;
-                if (m_value != value_last) {
+                static float value_last = 0;
+                float value = m_value_initial + (m_value_pulses * 0.010);
+                if (value != value_last) {
                     MyMessage message(SENSOR_1_GAS, V_VOLUME);
-                    if (send(message.set((float)m_value, 3)) == true) {
-                        value_last = m_value;
+                    if (send(message.set(value, 3)) == true) {
+                        value_last = value;
                     } else {
                         Serial.println(" [w] Failed to send gas volume!");
                     }
