@@ -20,6 +20,6 @@
 
 /* Volume monitoring configuration */
 #define CONFIG_VOLUME_PULSE_PIN 3
-#define CONFIG_VOLUME_REPORTING_INTERVAL 180000U  //!< Three minutes
+#define CONFIG_VOLUME_REPORTING_INTERVAL 300000U  //!< Five minutes
 
 #endif
