@@ -132,7 +132,7 @@ void loop(void) {
         _sendRoute(_msgTmp);
 
         /* Listen for incoming messages before sleeping
-         * and cancel sleep if we receiv a message */
+         * and cancel sleep if we receive a message */
         wait(MY_SMART_SLEEP_WAIT_DURATION_MS);
         if (m_received == true) {
             time_sleep_initial = 0;
