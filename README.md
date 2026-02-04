@@ -1,26 +1,38 @@
+[![Designed by Sitron Labs](https://img.shields.io/badge/Designed_by-Sitron_Labs-FCE477.svg)](https://www.sitronlabs.com/)
+[![Join the Discord community](https://img.shields.io/discord/552242187665145866.svg?logo=discord&logoColor=white&label=Discord&color=%237289da)](https://discord.gg/btnVDeWhfW)
+[![PayPal Donate](https://img.shields.io/badge/PayPal-Donate-00457C.svg?logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=QLX8VU9Q3PFFL)
+![License](https://img.shields.io/github/license/sitronlabs/SLHA00028-Firmware.svg)
+
 # MySensors RFM Gazpar Module
-IoT energy sensor for Gazpar gas meters in France
 
-[![Preview](doc/preview.jpg)](https://www.tindie.com/products/sitronlabs/mysensors-rfm-gazpar-module/)
+Firmware for the MySensors RFM Gazpar Module, an IoT energy sensor designed to monitor French Gazpar gas meters in real time.
 
-### Get one
-<a href="https://www.tindie.com/products/sitronlabs/mysensors-rfm-gazpar-module/?ref=offsite_badges&utm_source=sellers_sitronlabs&utm_medium=badges&utm_campaign=badge_small"><img src="https://d2ss6ovg47m0r5.cloudfront.net/badges/tindie-smalls.png" alt="I sell on Tindie" width="200" height="55"></a>
+![Product preview](doc/product.jpg)
 
-### What is MySensors?
-Always wanted to make your own IoT sensors to automate your home? [MySensors](https://www.mysensors.org/) does all the heavy lifting so you can focus on what matters. It integrates into a lot of [controllers](https://www.mysensors.org/controller) (Home Assistant, Jeedom, Domoticz, and more) so you can easily connect custom made devices into your existing home automation setup.
+[Buy Now](https://www.sitronlabs.com/store/mysensors-rfm-gazpar-module-255)
 
-### Product description
-This module plugs into french Gazpar gas meters to keep track of the volume of gas consummed in real time. Gazpar meters send a pulse every 0.01 m³ (10 L) which is detected by this module.
+## Overview
 
-### Features
-- Designed for [MySensors](https://www.mysensors.org/) with a RFM69 or RFM95/96 (LoRa) radio
-- Battery powered
-- Comes with a cable for interfacing with the Gazpar gas meter
-- Opensource firmware
-- USB port for debugging and firmware update
+This module connects to French Gazpar gas meters to track gas consumption in real time. Gazpar meters emit a pulse every 0.01 m³ (10 liters), which this module detects and transmits wirelessly to your home automation controller. The module reports gas volume every minute and battery status every hour.
 
-### Known limitations
-With the current firmware, the battery will last probably last around a month before needing to be recharged. The next firmware update will try to improve efficiency, in order to last at least 3 months.
+This product is designed for the French market and integrates with Gazpar smart gas meters installed by GRDF (Gaz Réseau Distribution France).
 
-### Disclaimer
-This module has been designed with thoughts and consideration, but does not come with any certification. Only CE and ATEX certified devices should be installed next to the gas meter. Use it at your own risk.
+## What is MySensors?
+
+[MySensors](https://www.mysensors.org/) is an open source framework that simplifies building your own IoT sensors and actuators for home automation. It handles the low-level communication protocols so you can focus on your project's functionality. MySensors integrates with many popular home automation controllers including Home Assistant, Jeedom, Domoticz, OpenHAB, and more, making it easy to add custom devices to your existing setup.
+
+## Features
+
+* Designed for [MySensors](https://www.mysensors.org/) with a RFM69 or RFM95/RFM96 (LoRa) radio
+* Status LEDs for radio communication feedback
+* Battery powered (2x AA batteries)
+* Battery voltage monitoring
+* Screw terminal for connecting cable to Gazpar meter pulse output
+* USB port for debugging and firmware updates
+* Automatic volume tracking with persistence across reboots
+* Configurable reporting intervals
+* Open firmware and schematic
+
+## Building the Firmware
+
+This project uses [PlatformIO](https://platformio.org/). To build and upload the firmware, open the project in PlatformIO IDE (VS Code extension), select the appropriate build environment from the toolbar based on your radio module (RFM69 or RFM95/96, 433 MHz or 868 MHz), then click "Build" to compile and "Upload" to flash the firmware to the module.

@@ -30,7 +30,7 @@ int32_t battery_task(void) {
     /* Compute battery average ratio */
     double adc_voltage = (1.1 * analogRead(CONFIG_BATTERY_PIN)) / 1023.0;
     double bat_voltage = (adc_voltage * (CONFIG_BATTERY_VOLTAGE_DIVIDER_R1 + CONFIG_BATTERY_VOLTAGE_DIVIDER_R2)) / CONFIG_BATTERY_VOLTAGE_DIVIDER_R2;
-    double bat_ratio = (bat_voltage - 3.2) / (4.2 - 3.2);
+    double bat_ratio = (bat_voltage - 0.7) / (3.0 - 0.7);
     if (bat_ratio < 0) {
         bat_ratio = 0;
     } else if (bat_ratio > 1) {

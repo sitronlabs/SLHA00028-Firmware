@@ -10,7 +10,8 @@
 /* MySensors configuration */
 #define MY_DEBUG
 #define MY_DEFAULT_ERR_LED_PIN CONFIG_LED_RED_PIN
-#define MY_DEFAULT_TX_LED_PIN CONFIG_LED_GREEN_PIN
+#define MY_DEFAULT_TX_LED_PIN CONFIG_LED_YELLOW_PIN
+#define MY_DEFAULT_RX_LED_PIN CONFIG_LED_GREEN_PIN
 
 /* Battery monitoring configuration */
 #define CONFIG_BATTERY_PIN A0
@@ -20,6 +21,6 @@
 
 /* Volume monitoring configuration */
 #define CONFIG_VOLUME_PULSE_PIN 3
-#define CONFIG_VOLUME_REPORTING_INTERVAL 600000U  //!< Ten minutes
+#define CONFIG_VOLUME_REPORTING_INTERVAL 60000U  //!< One minute
 
 #endif
